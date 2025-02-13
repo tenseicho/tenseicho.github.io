@@ -1,0 +1,111 @@
+---
+const posts = [
+    {
+        title: "Gear, software and philosophy",
+        description: "An overview of the tools I use daily",
+        tags: ["software", "tools"],
+        date: "January 15, 2023"
+    },
+    {
+        title: "GTF 101",
+        description: "A comprehensive introduction to GTF",
+        tags: ["cybersecurity", "guides"],
+        date: "December 5, 2022"
+    },
+    {
+        title: "Encryption on Linux 101",
+        description: "A quick guide to encrypt your Linux system",
+        tags: ["security", "linux", "guides"],
+        date: "January 24, 2022"
+    }
+];
+---
+
+<section class="blog-posts">
+    <h2>Blog Posts</h2>
+    <div class="posts-grid">
+        {posts.map(post => (
+            <article class="post-card">
+                <h3>{post.title}</h3>
+                <p>{post.description}</p>
+                <div class="post-meta">
+                    <div class="tags">
+                        {post.tags.map(tag => (
+                            <span class="tag">{tag}</span>
+                        ))}
+                    </div>
+                    <time datetime={post.date}>{post.date}</time>
+                </div>
+            </article>
+        ))}
+    </div>
+</section>
+
+<style>
+    .blog-posts {
+        margin-bottom: 4rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .posts-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .post-card {
+        background: var(--card-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 0.5rem;
+        padding: 1.5rem;
+        transition: transform 0.2s ease;
+    }
+
+    .post-card:hover {
+        transform: translateY(-2px);
+    }
+
+    .post-card h3 {
+        font-size: 1.25rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .post-card p {
+        color: var(--text-secondary);
+        margin-bottom: 1rem;
+        font-size: 0.9rem;
+    }
+
+    .post-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.8rem;
+    }
+
+    .tags {
+        display: flex;
+        gap: 0.5rem;
+    }
+
+    .tag {
+        background: var(--background);
+        padding: 0.25rem 0.5rem;
+        border-radius: 0.25rem;
+        color: var(--text-secondary);
+    }
+
+    time {
+        color: var(--text-secondary);
+    }
+
+    @media (max-width: 768px) {
+        .posts-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style> 
