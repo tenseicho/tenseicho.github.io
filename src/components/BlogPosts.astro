@@ -4,19 +4,22 @@ const posts = [
         title: "Gear, software and philosophy",
         description: "An overview of the tools I use daily",
         tags: ["software", "tools"],
-        date: "January 15, 2023"
+        date: "January 15, 2023",
+        slug: "gear-software-and-philosophy"
     },
     {
         title: "GTF 101",
         description: "A comprehensive introduction to GTF",
         tags: ["cybersecurity", "guides"],
-        date: "December 5, 2022"
+        date: "December 5, 2022",
+        slug: "gtf-101"
     },
     {
         title: "Encryption on Linux 101",
         description: "A quick guide to encrypt your Linux system",
         tags: ["security", "linux", "guides"],
-        date: "January 24, 2022"
+        date: "January 24, 2022",
+        slug: "encryption-on-linux-101"
     }
 ];
 ---
@@ -25,18 +28,20 @@ const posts = [
     <h2>Blog Posts</h2>
     <div class="posts-grid">
         {posts.map(post => (
-            <article class="post-card">
-                <h3>{post.title}</h3>
-                <p>{post.description}</p>
-                <div class="post-meta">
-                    <div class="tags">
-                        {post.tags.map(tag => (
-                            <span class="tag">{tag}</span>
-                        ))}
+            <a href={`/blog/${post.slug}`} class="post-link">
+                <article class="post-card">
+                    <h3>{post.title}</h3>
+                    <p>{post.description}</p>
+                    <div class="post-meta">
+                        <div class="tags">
+                            {post.tags.map(tag => (
+                                <span class="tag">{tag}</span>
+                            ))}
+                        </div>
+                        <time datetime={post.date}>{post.date}</time>
                     </div>
-                    <time datetime={post.date}>{post.date}</time>
-                </div>
-            </article>
+                </article>
+            </a>
         ))}
     </div>
 </section>
@@ -57,16 +62,24 @@ const posts = [
         gap: 1.5rem;
     }
 
+    .post-link {
+        text-decoration: none;
+        color: inherit;
+        display: block;
+    }
+
     .post-card {
         background: var(--card-bg);
         border: 1px solid var(--border-color);
         border-radius: 0.5rem;
         padding: 1.5rem;
-        transition: transform 0.2s ease;
+        height: 100%;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
-    .post-card:hover {
+    .post-link:hover .post-card {
         transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
 
     .post-card h3 {
@@ -90,6 +103,7 @@ const posts = [
     .tags {
         display: flex;
         gap: 0.5rem;
+        flex-wrap: wrap;
     }
 
     .tag {

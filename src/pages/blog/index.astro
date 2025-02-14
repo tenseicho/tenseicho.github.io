@@ -1,0 +1,116 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const posts = await Astro.glob('./*.md');
+posts.sort((a, b) => new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime());
+---
+
+<Layout title="Blog Posts">
+    <section class="blog-posts">
+        <h1>Blog Posts</h1>
+        <div class="posts-grid">
+            {posts.map(post => {
+                const slug = post.file ? post.file.split('/').pop()?.replace('.md', '') : '';
+                const url = post.url ?? `/blog/${slug}`;
+                return (
+                    <a href={url} class="post-link">
+                        <article class="post-card">
+                            <h2>{post.frontmatter.title}</h2>
+                            <p>{post.frontmatter.description}</p>
+                            <div class="post-meta">
+                                <div class="tags">
+                                    {post.frontmatter.tags.map((tag: string) => (
+                                        <span class="tag">{tag}</span>
+                                    ))}
+                                </div>
+                                <time datetime={post.frontmatter.date}>
+                                    {post.frontmatter.date}
+                                </time>
+                            </div>
+                        </article>
+                    </a>
+                );
+            })}
+        </div>
+    </section>
+</Layout>
+
+<style>
+    .blog-posts {
+        padding: 2rem 1rem;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    h1 {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .posts-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .post-link {
+        text-decoration: none;
+        color: inherit;
+        display: block;
+    }
+
+    .post-card {
+        background: var(--card-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 0.5rem;
+        padding: 1.5rem;
+        height: 100%;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .post-link:hover .post-card {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .post-card h2 {
+        font-size: 1.25rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .post-card p {
+        color: var(--text-secondary);
+        margin-bottom: 1rem;
+        font-size: 0.9rem;
+    }
+
+    .post-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.8rem;
+    }
+
+    .tags {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+    }
+
+    .tag {
+        background: var(--background);
+        padding: 0.25rem 0.5rem;
+        border-radius: 0.25rem;
+        color: var(--text-secondary);
+    }
+
+    time {
+        color: var(--text-secondary);
+    }
+
+    @media (max-width: 768px) {
+        .posts-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style> 
