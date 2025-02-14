@@ -1,4 +1,5 @@
 ---
+import SoftwareProjects from './SoftwareProjects.astro';
 const socialLinks = [
     { icon: "mail", href: "mailto:tenseicho@proton.me", label: "Email" },
     { icon: "twitter", href: "https://x.com/tenseicho", label: "Twitter" },
@@ -47,6 +48,10 @@ const socialLinks = [
             </a>
         ))}
     </div>
+    
+    <div class="projects-section">
+        <SoftwareProjects />
+    </div>
 </header>
 
 <style>
@@ -71,6 +76,7 @@ const socialLinks = [
     .social-links {
         display: flex;
         gap: 1rem;
+        margin-bottom: 3rem;
     }
 
     .social-icon {
@@ -95,5 +101,9 @@ const socialLinks = [
         clip: rect(0, 0, 0, 0);
         white-space: nowrap;
         border: 0;
+    }
+
+    .projects-section {
+        margin-top: 2rem;
     }
 </style> 

@@ -1,0 +1,164 @@
+---
+const projects = [
+    {
+        name: "Personal Website",
+        status: "completed",
+        tech: "Astro, TypeScript",
+        link: "https://github.com/tenseicho/tenseicho.github.io"
+    },
+    {
+        name: "Encryption Tools",
+        status: "in-progress",
+        tech: "Python, Cryptography",
+        link: "https://github.com/tenseicho/encryption-tools"
+    },
+    {
+        name: "Game Server Manager",
+        status: "in-progress",
+        tech: "Rust, Docker",
+        link: "https://github.com/tenseicho/game-server-manager"
+    },
+    {
+        name: "Network Monitor",
+        status: "planned",
+        tech: "Go, React",
+        link: null
+    }
+];
+---
+
+<section class="projects">
+    <div class="header">
+        <h2>Software Projects</h2>
+        <div class="tech-stack">
+            <code>TypeScript</code>
+            <code>Python</code>
+            <code>Rust</code>
+            <code>Go</code>
+        </div>
+    </div>
+    <div class="project-grid">
+        {projects.map(project => (
+            <div class="project-card">
+                <div class="project-header">
+                    <span class={`status-indicator ${project.status}`}></span>
+                    <h3>{project.name}</h3>
+                </div>
+                <div class="project-info">
+                    <div class="tech-info">
+                        Tech: {project.tech}
+                    </div>
+                    {project.link && (
+                        <a href={project.link} target="_blank" rel="noopener noreferrer" class="project-link">
+                            View Project →
+                        </a>
+                    )}
+                </div>
+            </div>
+        ))}
+    </div>
+</section>
+
+<style>
+    .projects {
+        margin-bottom: 4rem;
+    }
+
+    .header {
+        margin-bottom: 1.5rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .tech-stack {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+
+    .tech-stack code {
+        font-family: monospace;
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+    }
+
+    .project-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1rem;
+    }
+
+    .project-card {
+        background: var(--card-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 0.5rem;
+        padding: 1.5rem;
+        transition: transform 0.2s ease;
+    }
+
+    .project-card:hover {
+        transform: translateY(-2px);
+    }
+
+    .project-header {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .project-header h3 {
+        font-size: 1.1rem;
+        font-weight: 500;
+    }
+
+    .status-indicator {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+    }
+
+    .status-indicator.completed {
+        background: #22c55e;
+    }
+
+    .status-indicator.in-progress {
+        background: #eab308;
+    }
+
+    .status-indicator.planned {
+        background: #3b82f6;
+    }
+
+    .project-info {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .tech-info {
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+    }
+
+    .project-link {
+        display: inline-block;
+        color: var(--text-primary);
+        text-decoration: none;
+        font-size: 0.9rem;
+        transition: color 0.2s ease;
+    }
+
+    .project-link:hover {
+        color: var(--accent-color);
+    }
+
+    @media (max-width: 768px) {
+        .project-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style> 
