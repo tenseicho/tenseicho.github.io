@@ -1,0 +1,186 @@
+---
+const projects = [
+    {
+        name: "Cyberpunk Room",
+        status: "completed",
+        tech: "Blender, Substance Painter",
+        link: "https://sketchfab.com/3d-models/cyberpunk-room",
+        thumbnail: "/thumbnails/cyberpunk-room.jpg"
+    },
+    {
+        name: "Character Model",
+        status: "in-progress",
+        tech: "Maya, ZBrush",
+        link: "https://sketchfab.com/3d-models/character",
+        thumbnail: "/thumbnails/character.jpg"
+    },
+    {
+        name: "Sci-fi Environment",
+        status: "completed",
+        tech: "Blender, Substance Designer",
+        link: "https://sketchfab.com/3d-models/scifi-env",
+        thumbnail: "/thumbnails/scifi-env.jpg"
+    },
+    {
+        name: "Fantasy Weapon",
+        status: "planned",
+        tech: "Blender, Substance Painter",
+        link: null,
+        thumbnail: null
+    }
+];
+---
+
+<section class="threeDem">
+    <div class="header">
+        <h2>3D Projects</h2>
+        <div class="tech-stack">
+            <code>Blender</code>
+            <code>Maya</code>
+            <code>ZBrush</code>
+            <code>Substance</code>
+        </div>
+    </div>
+    <div class="project-grid">
+        {projects.map(project => (
+            <div class="project-card">
+                <div class="project-header">
+                    <span class={`status-indicator ${project.status}`}></span>
+                    <h3>{project.name}</h3>
+                </div>
+                <div class="project-info">
+                    <div class="tech-info">
+                        Tools: {project.tech}
+                    </div>
+                    {project.thumbnail && (
+                        <div class="thumbnail">
+                            <img src={project.thumbnail} alt={project.name} loading="lazy" />
+                        </div>
+                    )}
+                    {project.link && (
+                        <a href={project.link} target="_blank" rel="noopener noreferrer" class="project-link">
+                            View on Sketchfab →
+                        </a>
+                    )}
+                </div>
+            </div>
+        ))}
+    </div>
+</section>
+
+<style>
+    .threeDem {
+        margin-bottom: 4rem;
+    }
+
+    .header {
+        margin-bottom: 1.5rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .tech-stack {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+
+    .tech-stack code {
+        font-family: monospace;
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+    }
+
+    .project-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1rem;
+    }
+
+    .project-card {
+        background: var(--card-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 0.5rem;
+        padding: 1.5rem;
+        transition: transform 0.2s ease;
+    }
+
+    .project-card:hover {
+        transform: translateY(-2px);
+    }
+
+    .project-header {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .project-header h3 {
+        font-size: 1.1rem;
+        font-weight: 500;
+    }
+
+    .status-indicator {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+    }
+
+    .status-indicator.completed {
+        background: #22c55e;
+    }
+
+    .status-indicator.in-progress {
+        background: #eab308;
+    }
+
+    .status-indicator.planned {
+        background: #3b82f6;
+    }
+
+    .project-info {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .tech-info {
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+    }
+
+    .thumbnail {
+        width: 100%;
+        aspect-ratio: 16/9;
+        overflow: hidden;
+        border-radius: 0.25rem;
+    }
+
+    .thumbnail img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .project-link {
+        display: inline-block;
+        color: var(--text-primary);
+        text-decoration: none;
+        font-size: 0.9rem;
+        transition: color 0.2s ease;
+    }
+
+    .project-link:hover {
+        color: var(--accent-color);
+    }
+
+    @media (max-width: 768px) {
+        .project-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style> 

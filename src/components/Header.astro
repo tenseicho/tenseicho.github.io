@@ -1,5 +1,6 @@
 ---
 import SoftwareProjects from './SoftwareProjects.astro';
+import ThreeDem from './ThreeDem.astro';
 const socialLinks = [
     { icon: "mail", href: "mailto:tenseicho@proton.me", label: "Email" },
     { icon: "twitter", href: "https://x.com/tenseicho", label: "Twitter" },
@@ -51,6 +52,10 @@ const socialLinks = [
     
     <div class="projects-section">
         <SoftwareProjects />
+    </div>
+    
+    <div class="threeDem-section">
+        <ThreeDem />
     </div>
 </header>
 
@@ -104,6 +109,11 @@ const socialLinks = [
     }
 
     .projects-section {
+        margin-top: 2rem;
+        margin-bottom: 4rem;
+    }
+
+    .threeDem-section {
         margin-top: 2rem;
     }
 </style> 
