@@ -1,76 +1,74 @@
 ---
-const projects = await Astro.glob('../pages/3d-projects/*.md');
+import Layout from '../../layouts/Layout.astro';
+
+const projects = await Astro.glob('./*.md');
 projects.sort((a, b) => {
     const statusOrder = { completed: 1, "in-progress": 2, planned: 3 } as const;
     type Status = keyof typeof statusOrder;
     return statusOrder[a.frontmatter.status as Status] - statusOrder[b.frontmatter.status as Status];
-}).slice(0, 4); // Show only the first 4 projects on the main page
+});
 ---
 
-<section class="threeDem">
-    <div class="header">
-        <h2>3D Projects</h2>
+<Layout title="3D Projects">
+    <section class="projects">
+        <h1>3D Projects</h1>
         <div class="tech-stack">
             <code>Blender</code>
             <code>Maya</code>
             <code>ZBrush</code>
             <code>Substance</code>
         </div>
-    </div>
-    <div class="project-grid">
-        {projects.map(project => {
-            const slug = project.file ? project.file.split('/').pop()?.replace('.md', '') : '';
-            const url = project.url ?? `/3d-projects/${slug}`;
-            return (
-                <a href={url} class="project-link">
-                    <div class="project-card">
-                        <div class="project-header">
-                            <span class={`status-indicator ${project.frontmatter.status}`}></span>
-                            <h3>{project.frontmatter.title}</h3>
-                        </div>
-                        <div class="project-info">
+        <div class="project-grid">
+            {projects.map(project => {
+                const slug = project.file ? project.file.split('/').pop()?.replace('.md', '') : '';
+                const url = project.url ?? `/3d-projects/${slug}`;
+                return (
+                    <a href={url} class="project-link">
+                        <article class="project-card">
+                            <div class="project-header">
+                                <span class={`status-indicator ${project.frontmatter.status}`}></span>
+                                <h2>{project.frontmatter.title}</h2>
+                            </div>
                             <p>{project.frontmatter.description}</p>
                             {project.frontmatter.thumbnail && (
                                 <div class="thumbnail">
                                     <img 
                                         src={project.frontmatter.thumbnail} 
                                         alt={project.frontmatter.title}
-                                        loading="lazy" 
+                                        loading="lazy"
                                     />
                                 </div>
                             )}
-                            <div class="tech-info">
-                                Tools: {project.frontmatter.tech}
+                            <div class="project-meta">
+                                <div class="tech-info">
+                                    Tools: {project.frontmatter.tech}
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                </a>
-            );
-        })}
-    </div>
-    <div class="view-all">
-        <a href="/3d-projects" class="view-all-link">View All Projects →</a>
-    </div>
-</section>
+                        </article>
+                    </a>
+                );
+            })}
+        </div>
+    </section>
+</Layout>
 
 <style>
-    .threeDem {
-        margin-bottom: 4rem;
+    .projects {
+        padding: 2rem 1rem;
+        max-width: 1200px;
+        margin: 0 auto;
     }
 
-    .header {
-        margin-bottom: 1.5rem;
-    }
-
-    h2 {
-        font-size: 1.5rem;
-        margin-bottom: 0.5rem;
+    h1 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
     }
 
     .tech-stack {
         display: flex;
         gap: 1rem;
         flex-wrap: wrap;
+        margin-bottom: 2rem;
     }
 
     .tech-stack code {
@@ -82,7 +80,7 @@ projects.sort((a, b) => {
     .project-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 1rem;
+        gap: 1.5rem;
     }
 
     .project-link {
@@ -97,11 +95,12 @@ projects.sort((a, b) => {
         border-radius: 0.5rem;
         padding: 1.5rem;
         height: 100%;
-        transition: transform 0.2s ease;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
-    .project-card:hover {
+    .project-link:hover .project-card {
         transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
 
     .project-header {
@@ -111,9 +110,8 @@ projects.sort((a, b) => {
         margin-bottom: 1rem;
     }
 
-    .project-header h3 {
-        font-size: 1.1rem;
-        font-weight: 500;
+    .project-header h2 {
+        font-size: 1.25rem;
         margin: 0;
     }
 
@@ -135,19 +133,14 @@ projects.sort((a, b) => {
         background: #3b82f6;
     }
 
-    .project-info {
-        display: flex;
-        flex-direction: column;
-        gap: 0.75rem;
-    }
-
-    .project-info p {
+    p {
         color: var(--text-secondary);
+        margin-bottom: 1rem;
         font-size: 0.9rem;
-        margin: 0;
     }
 
     .thumbnail {
+        margin: 1rem 0;
         border-radius: 0.5rem;
         overflow: hidden;
     }
@@ -158,27 +151,15 @@ projects.sort((a, b) => {
         display: block;
     }
 
+    .project-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.8rem;
+    }
+
     .tech-info {
         color: var(--text-secondary);
-        font-size: 0.9rem;
-    }
-
-    .view-all {
-        margin-top: 2rem;
-        text-align: center;
-    }
-
-    .view-all-link {
-        display: inline-flex;
-        align-items: center;
-        color: var(--text-primary);
-        text-decoration: none;
-        font-size: 0.9rem;
-        transition: color 0.2s ease;
-    }
-
-    .view-all-link:hover {
-        color: var(--accent);
     }
 
     @media (max-width: 768px) {

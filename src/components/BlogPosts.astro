@@ -1,48 +1,45 @@
 ---
-const posts = [
-    {
-        title: "Gear, software and philosophy",
-        description: "An overview of the tools I use daily",
-        tags: ["software", "tools"],
-        date: "January 15, 2023",
-        slug: "gear-software-and-philosophy"
-    },
-    {
-        title: "GTF 101",
-        description: "A comprehensive introduction to GTF",
-        tags: ["cybersecurity", "guides"],
-        date: "December 5, 2022",
-        slug: "gtf-101"
-    },
-    {
-        title: "Encryption on Linux 101",
-        description: "A quick guide to encrypt your Linux system",
-        tags: ["security", "linux", "guides"],
-        date: "January 24, 2022",
-        slug: "encryption-on-linux-101"
-    }
-];
+const posts = await Astro.glob('../pages/blog/*.md');
+posts.sort((a, b) => new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime())
+    .slice(0, 4); // Show only the latest 4 blog posts on the main page
 ---
 
 <section class="blog-posts">
-    <h2>Blog Posts</h2>
+    <div class="header">
+        <h2>Blog Posts</h2>
+        <div class="tag-stack">
+            <code>software</code>
+            <code>cybersecurity</code>
+            <code>guides</code>
+            <code>tools</code>
+        </div>
+    </div>
     <div class="posts-grid">
-        {posts.map(post => (
-            <a href={`/blog/${post.slug}`} class="post-link">
-                <article class="post-card">
-                    <h3>{post.title}</h3>
-                    <p>{post.description}</p>
-                    <div class="post-meta">
-                        <div class="tags">
-                            {post.tags.map(tag => (
-                                <span class="tag">{tag}</span>
-                            ))}
+        {posts.map(post => {
+            const slug = post.file ? post.file.split('/').pop()?.replace('.md', '') : '';
+            const url = post.url ?? `/blog/${slug}`;
+            return (
+                <a href={url} class="post-link">
+                    <article class="post-card">
+                        <h3>{post.frontmatter.title}</h3>
+                        <p>{post.frontmatter.description}</p>
+                        <div class="post-meta">
+                            <div class="tags">
+                                {post.frontmatter.tags.map((tag: string) => (
+                                    <span class="tag">{tag}</span>
+                                ))}
+                            </div>
+                            <time datetime={post.frontmatter.date}>
+                                {post.frontmatter.date}
+                            </time>
                         </div>
-                        <time datetime={post.date}>{post.date}</time>
-                    </div>
-                </article>
-            </a>
-        ))}
+                    </article>
+                </a>
+            );
+        })}
+    </div>
+    <div class="view-all">
+        <a href="/blog" class="view-all-link">View All Posts →</a>
     </div>
 </section>
 
@@ -51,15 +48,31 @@ const posts = [
         margin-bottom: 4rem;
     }
 
+    .header {
+        margin-bottom: 1.5rem;
+    }
+
     h2 {
         font-size: 1.5rem;
-        margin-bottom: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .tag-stack {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+
+    .tag-stack code {
+        font-family: monospace;
+        color: var(--text-secondary);
+        font-size: 0.9rem;
     }
 
     .posts-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 1.5rem;
+        gap: 1rem;
     }
 
     .post-link {
@@ -74,23 +87,23 @@ const posts = [
         border-radius: 0.5rem;
         padding: 1.5rem;
         height: 100%;
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        transition: transform 0.2s ease;
     }
 
-    .post-link:hover .post-card {
+    .post-card:hover {
         transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
 
-    .post-card h3 {
-        font-size: 1.25rem;
-        margin-bottom: 0.5rem;
+    h3 {
+        font-size: 1.1rem;
+        font-weight: 500;
+        margin: 0 0 1rem;
     }
 
-    .post-card p {
+    p {
         color: var(--text-secondary);
-        margin-bottom: 1rem;
         font-size: 0.9rem;
+        margin: 0 0 1rem;
     }
 
     .post-meta {
@@ -115,6 +128,24 @@ const posts = [
 
     time {
         color: var(--text-secondary);
+    }
+
+    .view-all {
+        margin-top: 2rem;
+        text-align: center;
+    }
+
+    .view-all-link {
+        display: inline-flex;
+        align-items: center;
+        color: var(--text-primary);
+        text-decoration: none;
+        font-size: 0.9rem;
+        transition: color 0.2s ease;
+    }
+
+    .view-all-link:hover {
+        color: var(--accent);
     }
 
     @media (max-width: 768px) {

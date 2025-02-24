@@ -1,0 +1,113 @@
+---
+const { frontmatter } = Astro.props;
+import Layout from './Layout.astro';
+---
+
+<Layout title={frontmatter.title}>
+    <article class="project-post">
+        <header>
+            <h1>{frontmatter.title}</h1>
+            <div class="post-meta">
+                <div class="status">
+                    <span class={`status-indicator ${frontmatter.status}`}></span>
+                    {frontmatter.status}
+                </div>
+                <div class="tech">
+                    Tech Stack: {frontmatter.tech}
+                </div>
+            </div>
+        </header>
+        <div class="content">
+            <slot />
+        </div>
+        {frontmatter.link && (
+            <div class="project-links">
+                <a href={frontmatter.link} target="_blank" rel="noopener noreferrer">
+                    View Project →
+                </a>
+            </div>
+        )}
+    </article>
+</Layout>
+
+<style>
+    .project-post {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 2rem 1rem;
+    }
+
+    header {
+        margin-bottom: 2rem;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .post-meta {
+        display: flex;
+        gap: 1.5rem;
+        align-items: center;
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+    }
+
+    .status {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .status-indicator {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        display: inline-block;
+    }
+
+    .status-indicator.completed {
+        background: #22c55e;
+    }
+
+    .status-indicator.in-progress {
+        background: #eab308;
+    }
+
+    .status-indicator.planned {
+        background: #3b82f6;
+    }
+
+    .content {
+        line-height: 1.6;
+    }
+
+    .content :global(h2) {
+        font-size: 1.75rem;
+        margin: 2rem 0 1rem;
+    }
+
+    .content :global(p) {
+        margin-bottom: 1.25rem;
+    }
+
+    .project-links {
+        margin-top: 2rem;
+        padding-top: 1rem;
+        border-top: 1px solid var(--border-color);
+    }
+
+    .project-links a {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--text-primary);
+        text-decoration: none;
+        transition: color 0.2s ease;
+    }
+
+    .project-links a:hover {
+        color: var(--accent);
+    }
+</style> 
