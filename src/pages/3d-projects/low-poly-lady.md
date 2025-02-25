@@ -4,7 +4,7 @@ title: "Low Poly Lady"
 description: "A stylized low-poly female character model"
 status: "completed"
 tech: "Blender"
-link: "https://sketchfab.com/your-username"
+link: "https://sketchfab.com/3d-models/low-poly-lady-83f28a037dc340aea67b02b4aa495cf3"
 thumbnail: "/thumbnails/low-poly-lady.jpg"
 ---
 

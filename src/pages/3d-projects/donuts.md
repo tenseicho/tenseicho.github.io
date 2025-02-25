@@ -4,7 +4,7 @@ title: "Donuts Collection"
 description: "A delicious collection of 3D modeled donuts with various toppings"
 status: "completed"
 tech: "Blender"
-link: "https://sketchfab.com/your-username"
+link: "https://sketchfab.com/3d-models/donuts-8fede835307642e6a4fd6a3b93952ae8"
 thumbnail: "/thumbnails/donuts.jpg"
 ---
 

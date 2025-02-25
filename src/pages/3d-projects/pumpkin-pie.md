@@ -4,7 +4,7 @@ title: "Pumpkin Pie"
 description: "A realistic 3D model of a delicious pumpkin pie"
 status: "completed"
 tech: "Blender, Substance Painter"
-link: "https://sketchfab.com/your-username"
+link: "https://sketchfab.com/3d-models/pumpkin-pie-9d4ee12f1af846138361ff7e224699e3"
 thumbnail: "/thumbnails/pumpkin-pie.jpg"
 ---
 
