@@ -1,6 +1,8 @@
 ---
 import SoftwareProjects from './SoftwareProjects.astro';
 import ThreeDem from './ThreeDem.astro';
+import VideoContent from './VideoContent.astro';
+import Miscellaneous from './Miscellaneous.astro';
 const socialLinks = [
     { icon: "mail", href: "mailto:tenseicho@proton.me", label: "Email" },
     { icon: "twitter", href: "https://x.com/tenseicho", label: "Twitter" },
@@ -56,6 +58,14 @@ const socialLinks = [
     
     <div class="threeDem-section">
         <ThreeDem />
+    </div>
+    
+    <div class="video-content-section">
+        <VideoContent />
+    </div>
+    
+    <div class="miscellaneous-section">
+        <Miscellaneous />
     </div>
 </header>
 
@@ -114,6 +124,14 @@ const socialLinks = [
     }
 
     .threeDem-section {
+        margin-top: 2rem;
+    }
+    
+    .video-content-section {
+        margin-top: 2rem;
+    }
+    
+    .miscellaneous-section {
         margin-top: 2rem;
     }
 </style> 

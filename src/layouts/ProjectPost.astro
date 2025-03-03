@@ -12,9 +12,16 @@ import Layout from './Layout.astro';
                     <span class={`status-indicator ${frontmatter.status}`}></span>
                     {frontmatter.status}
                 </div>
-                <div class="tech">
-                    Tech Stack: {frontmatter.tech}
-                </div>
+                {frontmatter.tech && (
+                    <div class="tech">
+                        Tech Stack: {frontmatter.tech}
+                    </div>
+                )}
+                {frontmatter.category && (
+                    <div class="category">
+                        Category: {frontmatter.category}
+                    </div>
+                )}
             </div>
         </header>
         <div class="content">

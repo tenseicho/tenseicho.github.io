@@ -1,0 +1,160 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const projects = await Astro.glob('./*.md');
+projects.sort((a, b) => {
+    const statusOrder = { completed: 1, "in-progress": 2, planned: 3 } as const;
+    type Status = keyof typeof statusOrder;
+    return statusOrder[a.frontmatter.status as Status] - statusOrder[b.frontmatter.status as Status];
+});
+---
+
+<Layout title="Miscellaneous Projects | TenseiCho">
+    <div class="container">
+        <h1>Miscellaneous Projects</h1>
+        <p class="description">
+            A collection of my miscellaneous projects, including writing, art, and other creative endeavors.
+        </p>
+
+        <div class="project-grid">
+            {projects.map(project => {
+                const slug = project.file ? project.file.split('/').pop()?.replace('.md', '') : '';
+                const url = project.url ?? `/miscellaneous/${slug}`;
+                return (
+                    <a href={url} class="project-link">
+                        <div class="project-card">
+                            <div class="project-header">
+                                <span class={`status-indicator ${project.frontmatter.status}`}></span>
+                                <h3>{project.frontmatter.title}</h3>
+                            </div>
+                            <div class="project-info">
+                                <p>{project.frontmatter.description}</p>
+                                {project.frontmatter.thumbnail && (
+                                    <div class="thumbnail">
+                                        <img 
+                                            src={project.frontmatter.thumbnail} 
+                                            alt={project.frontmatter.title}
+                                            loading="lazy" 
+                                        />
+                                    </div>
+                                )}
+                                <div class="tech-info">
+                                    Category: {project.frontmatter.category}
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                );
+            })}
+        </div>
+    </div>
+</Layout>
+
+<style>
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem 1rem;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .description {
+        color: var(--text-secondary);
+        margin-bottom: 3rem;
+        max-width: 800px;
+    }
+
+    .project-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 2rem;
+    }
+
+    .project-link {
+        text-decoration: none;
+        color: inherit;
+        display: block;
+    }
+
+    .project-card {
+        background: var(--card-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 0.5rem;
+        padding: 1.5rem;
+        height: 100%;
+        transition: transform 0.2s ease;
+    }
+
+    .project-card:hover {
+        transform: translateY(-2px);
+    }
+
+    .project-header {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .project-header h3 {
+        font-size: 1.1rem;
+        font-weight: 500;
+        margin: 0;
+    }
+
+    .status-indicator {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+    }
+
+    .status-indicator.completed {
+        background: #22c55e;
+    }
+
+    .status-indicator.in-progress {
+        background: #eab308;
+    }
+
+    .status-indicator.planned {
+        background: #3b82f6;
+    }
+
+    .project-info {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .project-info p {
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+        margin: 0;
+    }
+
+    .thumbnail {
+        border-radius: 0.5rem;
+        overflow: hidden;
+    }
+
+    .thumbnail img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .tech-info {
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+        .project-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style> 
