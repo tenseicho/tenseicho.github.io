@@ -6,7 +6,7 @@ tags: ["asparagus", "life"]
 date: "March 25, 2025"
 ---
 
-I made a grievous error; I was under the assumption that Carolina’s friends were my friends. I’m sorry for disturbing the peace. It’s not healthy for me to assume that because you were friends with him that you would still see me the same way. I don’t see the world the same way as most people and in a way my gut is now my only sense of what is good for me & what is not. When I added your back, I had a pit in my stomach like no other. It’s like every time I texted my sister, it was the same eerie feeling. I'm a fool.
+I made a grievous error; I was under the assumption that Carolina’s friends were my friends. I’m sorry for disturbing the peace. It’s not healthy for me to assume that because you were friends with him that you would still see me the same way. I don’t see the world the same way as most people and in a way my gut is now my only sense of what is good for me & what is not. When I added you back, I had a pit in my stomach like no other. It’s like every time I texted my sister, it was the same eerie feeling. I'm a fool.
 
 It truly is unfortunate that I have to go about this all alone again. Last year when I left the discord it was very obvious to me that something was very, very wrong. As much as I paraded myself on being honest, I wasn’t being honest with myself.  I could blame others for the way I was being treated but at a certain point, you have to begin to look inwards and figure out what is wrong.
 
