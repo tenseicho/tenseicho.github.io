@@ -9,22 +9,13 @@ date: 2023-07-10
 
 # TenseiCho
 
-[TenseiCho](https://www.youtube.com/@tenseicho) is my main YouTube channel. 
+My main YouTube channel. 
 
-## About This Channel
+## Link
 
-TenseiCho represents me and only me. This is where I just post whatever I want. Haven't found an audience or an idea that I like for the YouTube channel but it's a work in progress.
-
-## Content Categories
-
-- Work in progress
-
-
-## Technical Setup
-
-- Work in progress
+[TenseiCho](https://www.youtube.com/@tenseicho)
 
 
 ## Featured Videos
 
-- Work in progress
+Work in progress
