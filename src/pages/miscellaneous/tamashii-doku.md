@@ -11,10 +11,8 @@ date: 2023-08-20
 
 Work in progress
 
-## About This Collection
+## Links
 
-Work in progress
-
-## Techniques Used
-
-- Work in Progress
+[DeviantArt](https://www.deviantart.com/tamashiidoku)
+<br><br>
+[X](https://x.com/tamashiidoku)
