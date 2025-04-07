@@ -9,20 +9,12 @@ date: 2023-09-05
 
 # DailyDoseOfAnime
 
-[DailyDoseOfAnime](https://www.youtube.com/@DailyDoseAnimu) is a content farm for everything anime & JP related.
+Daily Dose of Anime is a content farm for everything anime related.
 
-## About This Channel
+## Links
 
-DailyDoseOfAnime is a content farm for anything anime.
-
-## Content Categories
-
-- Work in progress
-
-## Production Process
-
-- Work in progress
-
-## Channel Features
-
-- Work in progress
+[TikTok](https://www.tiktok.com/@dailydoseanime_)
+<br><br>
+[X](https://x.com/dailydoseanime_)
+<br><br>
+[YT Shorts](https://www.youtube.com/@DailyDoseAnimu)
